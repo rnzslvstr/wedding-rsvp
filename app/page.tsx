@@ -352,7 +352,7 @@ Now, Louise and Jayson can’t wait to spend a lifetime of adventures together�
         <div className={`${styles.sectionInner} ${styles.sectionCenter}`}>
           <div className={styles.sectionKicker}>PRENUP GALLERY</div>
           <h2 className={styles.sectionTitle}>A few snapshots we love</h2>
-          <p className={styles.sectionCopy}>Tap any photo to view it larger.</p>
+          <p className={styles.sectionCopy}>Captured in Taipei, Taiwan · March 30, 2025</p>
         </div>
 
         <div className={styles.galleryFullBleed}>
