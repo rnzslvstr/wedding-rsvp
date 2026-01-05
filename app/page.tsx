@@ -24,13 +24,60 @@ export default function HomePage() {
       ? '/reception.svg'
       : '/Churchreception.svg';
 
-  // Shared Lightbox (venue + FAQ QRs)
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxSrc, setLightboxSrc] = useState<string>('');
+  // Prenup Gallery list (for arrows)
+  const galleryImages = useMemo(
+    () => [
+      '/prenup/1.jpg',
+      '/prenup/2.jpg',
+      '/prenup/3.jpg',
+      '/prenup/4.jpg',
+      '/prenup/5.jpg',
+      '/prenup/6.jpg',
+      '/prenup/7.jpg',
+      '/prenup/8.jpg',
+      '/prenup/9.jpg',
+      '/prenup/10.jpg',
+      '/prenup/11.jpg',
+      '/prenup/12.jpg',
+      '/prenup/13.jpg',
+      '/prenup/14.jpg',
+      '/prenup/15.jpg',
+      '/prenup/16.jpg',
+      '/prenup/17.jpg',
+      '/prenup/18.jpg',
+      '/prenup/19.jpg',
+    ],
+    []
+  );
 
-  const openLightbox = (src: string) => {
-    setLightboxSrc(src);
+  // Shared Lightbox (venue + gallery)
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxItems, setLightboxItems] = useState<string[]>([]);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const openLightbox = (items: string[] | string, startIndex = 0) => {
+    const arr = Array.isArray(items) ? items : [items];
+    setLightboxItems(arr);
+    setLightboxIndex(Math.min(Math.max(startIndex, 0), arr.length - 1));
     setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    setLightboxItems([]);
+    setLightboxIndex(0);
+  };
+
+  const hasMultiple = lightboxItems.length > 1;
+
+  const goPrev = () => {
+    if (!hasMultiple) return;
+    setLightboxIndex((i) => (i - 1 + lightboxItems.length) % lightboxItems.length);
+  };
+
+  const goNext = () => {
+    if (!hasMultiple) return;
+    setLightboxIndex((i) => (i + 1) % lightboxItems.length);
   };
 
   // FAQ (multi-open)
@@ -39,17 +86,20 @@ export default function HomePage() {
     setOpenFaqs((prev) => (prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]));
   };
 
-  // ESC closes lightbox
+  // ESC + arrows for lightbox
   useEffect(() => {
     if (!lightboxOpen) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setLightboxOpen(false);
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') goPrev();
+      if (e.key === 'ArrowRight') goNext();
     };
 
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [lightboxOpen]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lightboxOpen, hasMultiple, lightboxItems.length]);
 
   const storyMoments = useMemo(
     () => [
@@ -259,9 +309,7 @@ Now, Louise and Jayson canâ€™t wait to spend a lifetime of adventures togetherâ€
         <div className={`${styles.sectionInner} ${styles.sectionCenter}`}>
           <div className={styles.sectionKicker}>VENUE</div>
           <h2 className={styles.sectionTitle}>How to get there</h2>
-          <p className={styles.sectionCopy}>
-            Select a route view below. Tap the map to enlarge and zoom.
-          </p>
+          <p className={styles.sectionCopy}>Select a route view below. Tap the map to enlarge and zoom.</p>
 
           <div className={styles.venueTabs}>
             <button
@@ -273,9 +321,7 @@ Now, Louise and Jayson canâ€™t wait to spend a lifetime of adventures togetherâ€
             </button>
             <button
               type="button"
-              className={`${styles.venueTab} ${
-                venueView === 'reception' ? styles.venueTabActive : ''
-              }`}
+              className={`${styles.venueTab} ${venueView === 'reception' ? styles.venueTabActive : ''}`}
               onClick={() => setVenueView('reception')}
             >
               Venue
@@ -292,7 +338,7 @@ Now, Louise and Jayson canâ€™t wait to spend a lifetime of adventures togetherâ€
           <button
             type="button"
             className={styles.venueImageBtn}
-            onClick={() => openLightbox(venueSrc)}
+            onClick={() => openLightbox(venueSrc)} // single image (no arrows)
             aria-label="Open map in fullscreen"
           >
             <img src={venueSrc} alt="Venue directions map" className={styles.venueImage} draggable={false} />
@@ -311,32 +357,12 @@ Now, Louise and Jayson canâ€™t wait to spend a lifetime of adventures togetherâ€
 
         <div className={styles.galleryFullBleed}>
           <div className={styles.prenupGrid}>
-            {[
-              '/prenup/1.jpg',
-              '/prenup/2.jpg',
-              '/prenup/3.jpg',
-              '/prenup/4.jpg',
-              '/prenup/5.jpg',
-              '/prenup/6.jpg',
-              '/prenup/7.jpg',
-              '/prenup/8.jpg',
-              '/prenup/9.jpg',
-              '/prenup/10.jpg',
-              '/prenup/11.jpg',
-              '/prenup/12.jpg',
-              '/prenup/13.jpg',
-              '/prenup/14.jpg',
-              '/prenup/15.jpg',
-              '/prenup/16.jpg',
-              '/prenup/17.jpg',
-              '/prenup/18.jpg',
-              '/prenup/19.jpg',
-            ].map((src, i) => (
+            {galleryImages.map((src, i) => (
               <button
                 key={src}
                 type="button"
                 className={`${styles.prenupTile} ${styles[`t${i + 1}`]}`}
-                onClick={() => openLightbox(src)}
+                onClick={() => openLightbox(galleryImages, i)} // gallery mode (has arrows)
                 aria-label="Open photo"
               >
                 <img src={src} alt="Prenup photo" loading="lazy" draggable={false} />
@@ -467,19 +493,47 @@ Now, Louise and Jayson canâ€™t wait to spend a lifetime of adventures togetherâ€
 
       {/* ================= LIGHTBOX (shared) ================= */}
       {lightboxOpen && (
-        <div
-          className={styles.lightbox}
-          onClick={() => setLightboxOpen(false)}
-          role="dialog"
-          aria-modal="true"
-        >
-          <button className={styles.lightboxClose} aria-label="Close" onClick={() => setLightboxOpen(false)}>
+        <div className={styles.lightbox} onClick={closeLightbox} role="dialog" aria-modal="true">
+          <button className={styles.lightboxClose} aria-label="Close" onClick={closeLightbox}>
             âœ•
           </button>
 
+          {hasMultiple && (
+            <button
+              type="button"
+              className={styles.lightboxPrev}
+              aria-label="Previous image"
+              onClick={(e) => {
+                e.stopPropagation();
+                goPrev();
+              }}
+            >
+              â€¹
+            </button>
+          )}
+
           <div className={styles.lightboxInner} onClick={(e) => e.stopPropagation()}>
-            <img src={lightboxSrc} alt="Fullscreen" className={styles.lightboxImg} />
+            <img
+              src={lightboxItems[lightboxIndex]}
+              alt="Fullscreen"
+              className={styles.lightboxImg}
+              draggable={false}
+            />
           </div>
+
+          {hasMultiple && (
+            <button
+              type="button"
+              className={styles.lightboxNext}
+              aria-label="Next image"
+              onClick={(e) => {
+                e.stopPropagation();
+                goNext();
+              }}
+            >
+              â€º
+            </button>
+          )}
         </div>
       )}
     </div>

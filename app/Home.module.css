@@ -344,8 +344,13 @@
   gap: 34px;
   align-items: stretch;
   text-align: left;
+    max-height: 80vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   
 }
+
+
 
 @media (max-width: 900px) {
   .storyPanelOpen {
@@ -354,6 +359,8 @@
   .storyPanelInner {
     grid-template-columns: 1fr;
     gap: 22px;
+    max-height: calc(100vh - 120px);
+    padding-bottom: 40px;
   }
 }
 
@@ -1076,9 +1083,43 @@
   }
 }
 
+/* Make last tile span full row on mobile */
+@media (max-width: 768px) {
+  .prenupGrid > button:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
 /* ===== Small phones ===== */
 @media (max-width: 380px) {
   .prenupGrid {
     grid-auto-rows: 175px;
   }
 }
+
+.lightboxPrev,
+.lightboxNext {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 34px;
+  line-height: 48px;
+  text-align: center;
+  background: transparent;
+  color: #fff;
+  z-index: 1002;
+}
+
+.lightboxPrev {
+  left: 16px;
+}
+
+.lightboxNext {
+  right: 16px;
+}
+
