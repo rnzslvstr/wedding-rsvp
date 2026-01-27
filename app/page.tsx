@@ -5,7 +5,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import styles from './Home.module.css';
 
 /* ===================== CONFIG ===================== */
-const WEDDING_DATE = new Date('2026-04-30T17:00:00'); // April 30, 2026 – 5:00 PM
+// Force PH time (UTC+08:00) so countdown is correct for all viewers
+const WEDDING_DATE = new Date('2026-04-30T17:00:00+08:00'); // April 30, 2026 – 5:00 PM (Asia/Manila)
 /* ================================================== */
 
 export default function HomePage() {
@@ -105,7 +106,7 @@ export default function HomePage() {
     () => [
       {
         label: 'AUG',
-        day: '25',
+        day: '10', // fixed to match fullDate below
         year: '2016',
         fullDate: 'August 10, 2016',
         title: 'The early days',
@@ -174,8 +175,11 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
         q: 'Where is the ceremony?',
         a: (
           <>
-            The ceremony will be held at the <strong>Parish of the Immaculate Heart of Mary, Antipolo City</strong>. It starts at{' '}
-            <strong>3:30 PM</strong>. Please arrive at least <strong>30 minutes early</strong>, as the entourage will be marching in earlier, and this gives everyone time to get settled before the ceremony starts.
+            The ceremony will be held at the{' '}
+            <strong>Parish of the Immaculate Heart of Mary, Antipolo City</strong>. It starts at{' '}
+            <strong>4:00 PM</strong>. Please arrive at least <strong>45 minutes early</strong>, as the
+            entourage will be marching in earlier, and this gives everyone time to get settled before the
+            ceremony starts.
           </>
         ),
         extra: (
@@ -196,12 +200,20 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
           </a>
         ),
       },
+       {
+        q: 'Can we take photos during the ceremony?',
+        a: (
+          <>
+            To keep it sacred, we kindly ask that all phones and cameras be put away. Our photographers will take care of capturing the moments. And we’d love for you to be fully present with us!
+          </>
+        ),
+      },
       {
         q: 'Where is the reception?',
         a: (
           <>
-            We’ll be celebrating right after at <strong>Jardin de Miramar Events Place</strong>, Antipolo City. And it’s just about{' '}
-            <strong>10 minutes away</strong> from the church.
+            We’ll be celebrating right after at <strong>Jardin de Miramar Events Place</strong>, Antipolo
+            City. And it’s just about <strong>10 minutes away</strong> from the church.
           </>
         ),
         extra: (
@@ -226,7 +238,9 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
         q: 'What time does the reception start?',
         a: (
           <>
-            Dinner and the program will begin at <strong>6:00 PM</strong>. Feel free to arrive early to enjoy the garden views and mingle before the festivities begin. The reception will conclude at <strong>10:00 PM</strong>.
+            Dinner and the program will begin at <strong>6:00 PM</strong>. Feel free to arrive early to
+            enjoy the garden views and mingle before the festivities begin. The reception will conclude at{' '}
+            <strong>10:00 PM</strong>.
           </>
         ),
       },
@@ -242,22 +256,33 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
         extra: (
           <div>
             <img
-              src="/colortheme.png"
+              src="/colortheme.jpg"
               alt="Dress code color palette"
               className={styles.faqPaletteImg}
               draggable={false}
             />
             <div className={styles.faqDressNote}>
-              We kindly ask everyone to follow the dress code to help make the day and the photos even lovelier.
+              We kindly ask everyone to follow the dress code to help make the day and the photos even
+              lovelier.
             </div>
           </div>
+        ),
+      },
+          {
+        q: 'Can we give gifts?',
+        a: (
+          <>
+            Your love and presence are the greatest gifts. If you wish to give something, monetary gifts to help us build our home would be warmly appreciated.
+          </>
         ),
       },
       {
         q: 'Is it required to RSVP on the website?',
         a: (
           <>
-            Yes! Kindly RSVP through the website by the end of February, so we can carefully finalize our preparations. As we’re keeping our celebration intimate, we’re only able to welcome confirmed guests.
+            Yes! Kindly RSVP through the website by the end of February, so we can carefully finalize our
+            preparations. As we’re keeping our celebration intimate, we’re only able to welcome confirmed
+            guests.
           </>
         ),
       },
@@ -265,32 +290,21 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
         q: 'Can I bring a plus-one?',
         a: (
           <>
-            We’re celebrating with a small circle of loved ones, so we’re unable to accommodate plus-ones. We truly appreciate your understanding.
+            We’re celebrating with a small circle of loved ones, so we’re unable to accommodate plus-ones.
+            We truly appreciate your understanding.
           </>
         ),
       },
-      {
-        q: 'Can we give gifts?',
-        a: (
-          <>
-            Your love and presence are truly the best gifts. But if you wish to give something, monetary gifts would be deeply appreciated as we begin building our home together.
-          </>
-        ),
-      },
-      {
-        q: 'Can we take photos during the ceremony?',
-        a: (
-          <>
-            To keep it sacred, we kindly ask that all phones and cameras be put away during the ceremony. Our photographers will take care of capturing the moments. And we’d love for you to be fully present with us!
-          </>
-        ),
-      },
+  
+     
       {
         q: 'Are there nearby places to stay?',
         a: (
           <>
-            Yes! There are several hotels and resorts around Antipolo, including <strong>LeBlanc Hotel and Resort</strong>,{' '}
-            <strong>Altaroca Mountain Resort Antipolo</strong>, and <strong>Casa Azul Femar Resort and Hotel</strong>. There are also plenty of Airbnbs available in the area.
+            Yes! There are several hotels and resorts around Antipolo, including{' '}
+            <strong>LeBlanc Hotel and Resort</strong>, <strong>Altaroca Mountain Resort Antipolo</strong>,
+            and <strong>Casa Azul Femar Resort and Hotel</strong>. There are also plenty of Airbnbs
+            available in the area.
           </>
         ),
       },
@@ -314,7 +328,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
 
           <p className={styles.heroMessage}>
             We’re celebrating a really special chapter in our lives. After nine years together, we’ve shared
-            so much with the people who’ve been part of our story—the laughter, the adventures, and the
+            so much with the people who’ve  <br />been part of our story—the laughter, the adventures, and the
             little wins. Our journey simply wouldn’t be the same without you.
             <br />
             <br />
@@ -336,7 +350,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
               <div className={styles.stampDay}>30</div>
 
               <div className={styles.stampSide}>
-                <span>3:30 PM</span>
+                <span>4:00 PM</span>
               </div>
             </div>
 
@@ -364,7 +378,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
         <div className={`${styles.sectionInner} ${styles.sectionCenter}`}>
           <div className={styles.sectionKicker}>SAVE THE DATE</div>
           <h2 className={styles.sectionTitle}>A little preview of our day</h2>
-          <p className={styles.sectionCopy}>Here’s our save-the-date video.</p>
+          
 
           <div className={styles.videoWrap}>
             <div className={styles.videoFrame}>
@@ -438,8 +452,6 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
         </div>
       </section>
 
-      
-
       {/* ================= VENUE ================= */}
       <section id="venue" className={styles.section}>
         <div className={`${styles.sectionInner} ${styles.sectionCenter}`}>
@@ -460,7 +472,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
               className={`${styles.venueTab} ${venueView === 'reception' ? styles.venueTabActive : ''}`}
               onClick={() => setVenueView('reception')}
             >
-              Venue
+              Reception
             </button>
             <button
               type="button"
@@ -474,7 +486,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
           <button
             type="button"
             className={styles.venueImageBtn}
-            onClick={() => openLightbox(venueSrc)} // single image (no arrows)
+            onClick={() => openLightbox(venueSrc)}
             aria-label="Open map in fullscreen"
           >
             <img src={venueSrc} alt="Venue directions map" className={styles.venueImage} draggable={false} />
@@ -483,47 +495,43 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
         </div>
       </section>
 
-{/* ================= ENTOURAGE ================= */}
+     {/* ================= ENTOURAGE ================= */}
 <section id="entourage" className={styles.section}>
   <div className={styles.entourageBoard}>
-      <h2 className={styles.sectionTitle}>Entourage</h2>
+    <h2 className={styles.sectionTitle}>Entourage</h2>
 
     <p className={styles.entourageSub}>
-      WITH PRAISE &amp; THANKSGIVING TO GOD AND BLESSINGS FROM OUR BELOVED PARENTS
+      In gratitude to God, and surrounded by the love of family
     </p>
 
     {/* Parents */}
- <div className={styles.parentsRow}>
-  <div className={styles.parentsCol}>
-    <div className={styles.parentsLabel}>Parents of the Bride</div>
-    <div>Henry Silvestre</div>
-    <div>Flordeliza Silvestre</div>
-  </div>
+    <div className={styles.parentsRow}>
+      <div className={styles.parentsCol}>
+        <div className={styles.parentsLabel}>Parents of the Bride</div>
+        <div>Henry Silvestre</div>
+        <div>Flordeliza Silvestre</div>
+      </div>
 
-  <div className={styles.parentsAmp}>&amp;</div>
-
-  <div className={styles.parentsCol}>
-    <div className={styles.parentsLabel}>Parents of the Groom</div>
-    <div>Isidro Porte</div>
-    <div className={styles.deceased}>
-      Nita Porte <span className={styles.cross}>✝</span>
+      <div className={styles.parentsCol}>
+        <div className={styles.parentsLabel}>Parents of the Groom</div>
+        <div>Isidro Porte</div>
+        <div className={styles.deceased}>
+          Nita Porte <span className={styles.cross}>✝</span>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-   {/* Divider (1-line) */}
+    {/* Assist */}
     <div className={styles.entourageDivider}>
-  <span className={styles.dividerText}>
-    <span className={styles.dividerMain}>TO ASSIST US WITH OUR NEEDS</span>
-  </span>
-</div>
+      <span className={styles.dividerText}>
+        <span className={styles.dividerMain}>TO ASSIST US WITH OUR NEEDS</span>
+      </span>
+    </div>
 
-
-    {/* Best Man / Maid of Honor */}
     <div className={styles.twoCol}>
       <div>
         <div className={styles.role}>BEST MAN</div>
-        <div>Aaron Adrian Javal </div>
+        <div>Aaron Javal</div>
       </div>
       <div>
         <div className={styles.role}>MAID OF HONOR</div>
@@ -531,17 +539,13 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
       </div>
     </div>
 
+    {/* Principal Sponsors */}
+    <div className={styles.entourageDivider}>
+      <span className={styles.dividerText}>
+        <span className={styles.dividerMain}>PRINCIPAL SPONSORS</span>
+      </span>
+    </div>
 
-    {/* Divider (2-line) */}
-   <div className={styles.entourageDivider}>
-  <span className={styles.dividerText}>
-    <span className={styles.dividerSub}>PRINCIPAL SPONSORS</span>
-    <span className={styles.dividerMain}>TO STAND AS WITNESS TO OUR BOWS</span>
-  </span>
-</div>
-
-
-    {/* Sponsors */}
     <div className={styles.twoCol}>
       <div>
         <div>Jeffrey Meer</div>
@@ -551,104 +555,93 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
       </div>
       <div>
         <div>Cristina Meer</div>
-        <div>Rosalina Porte</div>
+        <div>Rosalina Licas</div>
         <div>Malou Arceo</div>
         <div>Joshene Bersales</div>
       </div>
-        <div className={styles.centerSpan}>
-    <div>Melanie Silvestre</div>
-    <div>Beverly Silvestre</div>
-  </div>
+      <div className={styles.centerSpan}>
+        <div>Melanie Silvestre</div>
+        <div>Beverly Silvestre</div>
+      </div>
     </div>
 
- 
-
-    {/* Divider (2-line) */}
-  <div className={styles.entourageDivider}>
-  <span className={styles.dividerText}>
-    <span className={styles.dividerSub}>SECONDARY SPONSORS</span>
-    <span className={styles.dividerMain}>TO GUIDE OUR WAY AHEAD </span>
-  </span>
-</div>
-
-
-<div className={styles.threeCol}>
-  <div>
-    <div className={styles.role}>CANDLE</div>
-    <div>Kaizz Silvestre</div>
-    <div>Koleen Alcantara</div>
-  </div>
-
-  <div>
-    <div className={styles.role}>VEIL</div>
-    <div>Renz Silvestre</div>
-    <div>Jheraldine Meer</div>
-  </div>
-
-  <div>
-    <div className={styles.role}>CORD</div>
-    <div>Noah Loyola</div>
-    <div>Jhayle Loyola</div>
-  </div>
-</div>
-
-<div className={styles.entourageDivider}>
-  <span className={styles.dividerText}>
-    <span className={styles.dividerSub}>WITH OUR</span>
-    <span className={styles.dividerMain}>BRIDAL PARTY</span>
-  </span>
-</div>
-
-<div className={styles.twoCol}>
-  <div>
-    <div className={styles.role}>GROOMSMEN</div>
-    <div>Awie Maningat</div>
-    <div>Franz Daniel Osila</div>
-    <div>Ronald Bartolome</div>
-  </div>
-
-  <div>
-    <div className={styles.role}>BRIDESMAIDS</div>
-    <div>Camille Krizia Porte</div>
-    <div>Joselle Ann Porte</div>
-    <div>Francheska Zulueta</div>
-  </div>
-</div>
-
-
-
-    {/* Divider (1-line) */}
+    {/* Secondary Sponsors */}
     <div className={styles.entourageDivider}>
-  <span className={styles.dividerText}>
-    <span className={styles.dividerMain}>TO CARRY OUR SYMBOL OF LOVE, FAITH, &amp; TREASURES</span>
-  </span>
-</div>
+      <span className={styles.dividerText}>
+        <span className={styles.dividerMain}>SECONDARY SPONSORS</span>
+      </span>
+    </div>
 
+    <div className={styles.threeCol}>
+      <div>
+        <div className={styles.role}>CANDLE</div>
+        <div>Kaizz Silvestre</div>
+        <div>Koleen Robinos</div>
+      </div>
+
+      <div>
+        <div className={styles.role}>VEIL</div>
+        <div>Renz Silvestre</div>
+        <div>Jheraldine Perez</div>
+      </div>
+
+      <div>
+        <div className={styles.role}>CORD</div>
+        <div>Noah Loyola</div>
+        <div>Jhayle Loyola</div>
+      </div>
+    </div>
+
+ <div className={styles.entourageSpacer} />
+
+
+    <div className={styles.twoCol}>
+      <div>
+        <div className={styles.role}>GROOMSMEN</div>
+        <div>Awie Maningat</div>
+        <div>Daniel Osila</div>
+        <div>Ronald Bartolome</div>
+      </div>
+
+      <div>
+        <div className={styles.role}>BRIDESMAIDS</div>
+        <div>Camille Krizia Porte</div>
+        <div>Joselle Ann Porte</div>
+        <div>Francheska Zulueta</div>
+      </div>
+    </div>
 
     {/* Bearers */}
-<div className={styles.threeCol}>
-  <div>
-    <div className={styles.role}>RING</div>
-    <div>Camille Maximo</div>
-  </div>
-  <div>
-    <div className={styles.role}>COIN</div>
-    <div>Janica Santos</div>
-  </div>
-  <div>
-    <div className={styles.role}>BIBLE</div>
-    <div>Emerald Sumalde</div>
-  </div>
+    <div className={styles.entourageDivider}>
+      <span className={styles.dividerText}>
+        <span className={styles.dividerMain}>
+          TO CARRY OUR SYMBOL OF LOVE, FAITH, &amp; TREASURES
+        </span>
+      </span>
+    </div>
 
-  <div className={styles.officiant}>
-    <div className={styles.role}>OFFICIANT</div>
-    <div>Fr. Keith Buenaventura</div>
-  </div>
-</div>
+    <div className={styles.threeCol}>
+      <div>
+        <div className={styles.role}>RING</div>
+        <div>Camille Maximo</div>
+      </div>
+      <div>
+        <div className={styles.role}>COIN</div>
+        <div>Janica Santos</div>
+      </div>
+      <div>
+        <div className={styles.role}>BIBLE</div>
+        <div>Emerald Sumalde</div>
+      </div>
 
+      <div className={styles.officiant}>
+        <div className={styles.role}>OFFICIANT</div>
+        <div>Fr. Keith Buenaventura</div>
+      </div>
+    </div>
   </div>
 </section>
-      
+
 
       {/* ================= PRENUP GALLERY ================= */}
       <section id="prenup-gallery" className={styles.section}>
@@ -665,7 +658,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
                 key={src}
                 type="button"
                 className={`${styles.prenupTile} ${styles[`t${i + 1}`]}`}
-                onClick={() => openLightbox(galleryImages, i)} // gallery mode (has arrows)
+                onClick={() => openLightbox(galleryImages, i)}
                 aria-label="Open photo"
               >
                 <img src={src} alt="Prenup photo" loading="lazy" draggable={false} />
@@ -674,8 +667,6 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
           </div>
         </div>
       </section>
-
-
 
       {/* ================= FAQ ================= */}
       <section id="faq" className={styles.section}>
@@ -715,7 +706,8 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
           </div>
 
           <p className={styles.faqFooter}>
-            If you have any other questions, feel free to reach out to the bride or groom. We’re happy to help.
+            If you have any other questions, feel free to reach out to the bride or groom. We’re happy to
+            help.
           </p>
         </div>
       </section>

@@ -14,39 +14,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const [enabled, setEnabled] = useState(false); // user allowed music
   const [muted, setMuted] = useState(false); // user muted
 
-  // Init audio + load saved preference
+  // Load saved preference (DOM <audio> handles the actual audio)
   useEffect(() => {
-    const audio = new Audio('/bgmusic.mp3');
-    audio.loop = true;
-    audio.volume = 0.5; // 50%
-    audioRef.current = audio;
-
     const savedEnabled = localStorage.getItem('bgm_enabled') === '1';
     const savedMuted = localStorage.getItem('bgm_muted') === '1';
 
     setEnabled(savedEnabled);
     setMuted(savedMuted);
-
-    // If previously enabled, try to start (may still require a gesture depending on browser)
-    if (savedEnabled) {
-      audio.muted = savedMuted;
-      audio.play().catch(() => {
-        // blocked until gesture
-      });
-    }
-
     setReady(true);
-
-    return () => {
-      audio.pause();
-      audio.currentTime = 0;
-    };
   }, []);
 
   // Keep audio mute state in sync
   useEffect(() => {
-    if (!audioRef.current) return;
-    audioRef.current.muted = muted;
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.muted = muted;
     localStorage.setItem('bgm_muted', muted ? '1' : '0');
   }, [muted]);
 
@@ -55,22 +38,48 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     if (!audio) return;
 
     try {
-      audio.muted = muted;
+      // force audible on first enable
+      audio.muted = false;
+      setMuted(false);
+
+      // volume must be set on element
+      audio.volume = 0.5;
+
       await audio.play();
+
       setEnabled(true);
       localStorage.setItem('bgm_enabled', '1');
-    } catch {
-      // user can tap again
+      localStorage.setItem('bgm_muted', '0');
+    } catch (e) {
+      console.log('Play failed:', e);
     }
   };
 
-  const toggleMute = () => {
-    if (!enabled) {
-      startMusic();
+  const toggleMute = async () => {
+  const audio = audioRef.current;
+  if (!audio) return;
+
+  // if audio isn't playing (common after refresh), start it on user tap
+  if (audio.paused) {
+    try {
+      audio.volume = 0.5;
+      audio.muted = false;
+      setMuted(false);
+      await audio.play();
+      setEnabled(true);
+      localStorage.setItem('bgm_enabled', '1');
+      localStorage.setItem('bgm_muted', '0');
+      return;
+    } catch (e) {
+      console.log('Play failed:', e);
       return;
     }
-    setMuted((v) => !v);
-  };
+  }
+
+  // otherwise just mute/unmute
+  setMuted((v) => !v);
+};
+
 
   const MusicControl = () => {
     if (!ready) return null;
@@ -136,6 +145,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <Navbar />
+
+        {/* DOM audio element (more reliable on mobile/Safari) */}
+        <audio ref={audioRef} src="/bgmusic.mp3" loop preload="auto" />
 
         <MusicControl />
 

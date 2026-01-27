@@ -1,5 +1,8 @@
-:global(html) {
+:global(html),
+:global(body) {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .desktopNav {
@@ -260,10 +263,11 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   letter-spacing: 2px;
-  color: rgba(47, 38, 34, 0.7);
+  color: #a87e62; /* updated */
   font-weight: 700;
   margin-bottom: 10px;
 }
+
 
 .sectionTitle {
   font-family: 'Playfair Display', serif;
@@ -926,41 +930,8 @@
   object-fit: contain; /* IMPORTANT: no crop */
 }
 
-.galleryFullBleed {
-  width: 100%;
-  padding: 0 18px 28px; /* full width but padded */
-}
 
-/* Desktop locked collage */
-.prenupGrid {
-  width: 100%;
-  max-width: 1320px;
-  margin: 0 auto;
 
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 82px;          /* controls “tile height” rhythm */
-  gap: 8px;
-  grid-auto-flow: dense;
-}
-
-.prenupTile {
-  border: none;
-  padding: 0;
-  background: transparent;
-  cursor: zoom-in;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.10);
-}
-
-.prenupTile img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  transition: transform 180ms ease;
-}
 
 .prenupTile:hover img {
   transform: scale(1.02);
@@ -1135,17 +1106,14 @@
 /* ================= ENTOURAGE ================= */
 
 .entourageBoard {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
   padding: 64px 20px;
-  background: transparent;
-  color: #2f2622;
   text-align: center;
+  color: #2f2622;
 }
 
-/* Intro */
 .entourageSub {
-  font-size: 12px;
+  font-size: 15px;
   letter-spacing: 1px;
   opacity: 0.9;
   margin-bottom: 28px;
@@ -1154,9 +1122,8 @@
 /* Parents */
 .parentsRow {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 18px;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
   max-width: 720px;
   margin: 0 auto 32px;
 }
@@ -1165,116 +1132,6 @@
   font-size: 14px;
   line-height: 1.8;
 }
-
-.parentsAmp {
-  font-family: "Playfair Display", serif;
-  font-size: 28px;
-  opacity: 0.9;
-}
-
-/* Divider (line — text — line) */
-.entourageDivider {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 16px;
-  margin: 36px auto 24px;
-  max-width: 720px;
-  text-transform: uppercase;
-  color: #2f2622;
-}
-
-.entourageDivider::before,
-.entourageDivider::after {
-  content: "";
-  height: 1px;
-  background: rgba(0, 0, 0, 0.35);
-}
-
-/* Divider text block */
-.dividerText {
-  display: inline-block;
-  padding: 0 24px;
-  background: #fff; /* IMPORTANT: prevents line crossing text */
-  text-align: center;
-  white-space: nowrap;
-}
-
-.dividerSub {
-  display: block;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  opacity: 0.75;
-  margin-bottom: 2px;
-}
-
-.dividerMain {
-  display: block;
-  font-size: 13px;
-  letter-spacing: 2px;
-  font-weight: 600;
-}
-
-/* Two columns */
-.twoCol {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  max-width: 720px;
-  margin: 0 auto 28px;
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-/* Three columns */
-.threeCol {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  max-width: 720px;
-  margin: 0 auto;
-  font-size: 14px;
-}
-
-/* Roles */
-.role {
-  font-size: 12px;
-  letter-spacing: 1px;
-  opacity: 0.75;
-  margin-bottom: 4px;
-}
-
-.officiant {
-  grid-column: 1 / -1; /* span all columns */
-  text-align: center;
-  margin-top: 12px;
-}
-
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 640px) {
-  .twoCol,
-  .threeCol {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .parentsRow {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .parentsAmp {
-    font-size: 22px;
-    margin: 6px 0;
-  }
-
-  .dividerText {
-    padding: 0 12px;
-  }
-}
-
 
 .parentsLabel {
   font-size: 12px;
@@ -1291,12 +1148,94 @@
 }
 
 .cross {
-  color: #b00020; /* respectful red */
+  color: #b00020;
+  font-size: 14px;
+}
+
+/* One-line divider (no lines) */
+.entourageDivider {
+  margin: 36px auto 24px;
+  max-width: 720px;
+  text-align: center;
+}
+
+.entourageDivider::before,
+.entourageDivider::after {
+  display: none;
+}
+
+.dividerText {
+  display: inline-block;
+}
+
+.dividerMain {
+  font-size: clamp(11px, 2.5vw, 13px);
+  letter-spacing: 2px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+
+/* Columns */
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 720px;
+  margin: 0 auto 28px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.threeCol {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 720px;
+  margin: 0 auto;
   font-size: 14px;
 }
 
 .centerSpan {
-  grid-column: 1 / -1; /* span both columns */
+  grid-column: 1 / -1;
   text-align: center;
+}
+
+/* Roles */
+.role {
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 0.75;
+  margin-bottom: 4px;
+}
+
+/* Officiant */
+.officiant {
+  grid-column: 1 / -1;
+  margin-top: 12px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .parentsRow,
+  .twoCol,
+  .threeCol {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .dividerMain {
+    font-size: 12px;
+  }
+}
+
+.entourageSpacer {
+  height: 36px;
+}
+
+@media (max-width: 640px) {
+  .entourageSpacer {
+    height: 28px;
+  }
 }
 

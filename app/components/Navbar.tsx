@@ -12,7 +12,7 @@ export default function Navbar() {
 
   const [scrolled, setScrolled] = useState(false);
 
-  // Mobile menu (same logic as your HomePage)
+  // Mobile menu
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileVisible, setMobileVisible] = useState(false);
 
@@ -47,14 +47,23 @@ export default function Navbar() {
 
   const navBg = scrolled ? '#EDD3C6' : 'transparent';
   const navText = isRSVP ? '#2f2622' : scrolled ? '#2f2622' : '#ffffff';
-
   const navShadow = scrolled ? '0 10px 30px rgba(0,0,0,0.12)' : 'none';
 
-  const items = ['Home', 'Our Story', 'Venue', 'FAQ'];
+  // ✅ added: Entourage + Prenup
+  const items = ['Home', 'Our Story', 'Venue', 'Entourage', 'Prenup', 'FAQ'];
 
   // Home uses "#", other pages use "/#"
   const hrefFor = (item: string) => {
-    const id = item.toLowerCase().replace(/ /g, '-');
+    const map: Record<string, string> = {
+      Home: 'home',
+      'Our Story': 'our-story',
+      Venue: 'venue',
+      Entourage: 'entourage',
+      Prenup: 'prenup-gallery',
+      FAQ: 'faq',
+    };
+
+    const id = map[item] ?? item.toLowerCase().replace(/ /g, '-');
     return isHome ? `#${id}` : `/#${id}`;
   };
 
@@ -101,17 +110,11 @@ export default function Navbar() {
 
           <nav className={styles.desktopNav}>
             {items.map((item) => (
-              <a
-                key={item}
-                href={hrefFor(item)}
-                onClick={handleNavClick}
-                style={linkStyle(navText)}
-              >
+              <a key={item} href={hrefFor(item)} onClick={handleNavClick} style={linkStyle(navText)}>
                 {item}
               </a>
             ))}
 
-            {/* RSVP button style same as your landing */}
             {isRSVP ? (
               <span
                 style={{
@@ -144,9 +147,6 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Spacer so content doesn’t sit under fixed navbar */}
-     
-
       {/* ================= MOBILE OVERLAY ================= */}
       {mobileOpen && (
         <div className={`${styles.mobileOverlay} ${mobileVisible ? styles.mobileOverlayShow : ''}`}>
@@ -175,7 +175,7 @@ export default function Navbar() {
   );
 }
 
-/* ================= HELPERS (same as your HomePage) ================= */
+/* ================= HELPERS ================= */
 
 function linkStyle(color: string) {
   return {
