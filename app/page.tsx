@@ -177,9 +177,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
           <>
             The ceremony will be held at the{' '}
             <strong>Parish of the Immaculate Heart of Mary, Antipolo City</strong>. It starts at{' '}
-            <strong>4:00 PM</strong>. Please arrive at least <strong>45 minutes early</strong>, as the
-            entourage will be marching in earlier, and this gives everyone time to get settled before the
-            ceremony starts.
+            <strong>4:00 PM</strong>. Please arrive at least <strong>45 minutes early</strong>, as the entourage will be marching in beforehand and to allow time for everyone to get settled.
           </>
         ),
         extra: (
@@ -495,152 +493,122 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
         </div>
       </section>
 
-     {/* ================= ENTOURAGE ================= */}
+   {/* ================= ENTOURAGE ================= */}
 <section id="entourage" className={styles.section}>
   <div className={styles.entourageBoard}>
-    <h2 className={styles.sectionTitle}>Entourage</h2>
 
-    <p className={styles.entourageSub}>
-      In gratitude to God, and surrounded by the love of family
-    </p>
+    <h2 className={styles.entourageTitle}>ENTOURAGE</h2>
+    <p className={styles.entourageSubtitle}>Joined by those closest to our hearts</p>
 
     {/* Parents */}
-    <div className={styles.parentsRow}>
-      <div className={styles.parentsCol}>
-        <div className={styles.parentsLabel}>Parents of the Bride</div>
+    <div className={styles.twoCol}>
+      <div>
+        <div className={styles.role}>PARENTS OF THE BRIDE</div>
         <div>Henry Silvestre</div>
         <div>Flordeliza Silvestre</div>
       </div>
-
-      <div className={styles.parentsCol}>
-        <div className={styles.parentsLabel}>Parents of the Groom</div>
+      <div>
+        <div className={styles.role}>PARENTS OF THE GROOM</div>
         <div>Isidro Porte</div>
-        <div className={styles.deceased}>
+        <div>
           Nita Porte <span className={styles.cross}>✝</span>
         </div>
       </div>
     </div>
 
-    {/* Assist */}
-    <div className={styles.entourageDivider}>
-      <span className={styles.dividerText}>
-        <span className={styles.dividerMain}>TO ASSIST US WITH OUR NEEDS</span>
-      </span>
-    </div>
-
+    {/* MOH / Best Man */}
     <div className={styles.twoCol}>
-      <div>
-        <div className={styles.role}>BEST MAN</div>
-        <div>Aaron Javal</div>
-      </div>
       <div>
         <div className={styles.role}>MAID OF HONOR</div>
         <div>Franz Silvestre</div>
       </div>
+      <div>
+        <div className={styles.role}>BEST MAN</div>
+        <div>Aaron Javal</div>
+      </div>
     </div>
 
     {/* Principal Sponsors */}
-    <div className={styles.entourageDivider}>
-      <span className={styles.dividerText}>
-        <span className={styles.dividerMain}>PRINCIPAL SPONSORS</span>
-      </span>
-    </div>
+    <div className={styles.sectionLabel}>PRINCIPAL SPONSORS</div>
 
     <div className={styles.twoCol}>
-      <div>
-        <div>Jeffrey Meer</div>
-        <div>Eddie Licas</div>
-        <div>Joma Robles</div>
-        <div>Jordan Santos</div>
-      </div>
       <div>
         <div>Cristina Meer</div>
         <div>Rosalina Licas</div>
         <div>Malou Arceo</div>
         <div>Joshene Bersales</div>
       </div>
-      <div className={styles.centerSpan}>
-        <div>Melanie Silvestre</div>
-        <div>Beverly Silvestre</div>
+      <div>
+        <div>Jeffrey Meer</div>
+        <div>Eddie Licas</div>
+        <div>Joma Robles</div>
+        <div>Jordan Santos</div>
       </div>
+    </div>
+
+    <div className={styles.centerNames}>
+      <div>Melanie Silvestre</div>
+      <div>Beverly Silvestre</div>
     </div>
 
     {/* Secondary Sponsors */}
-    <div className={styles.entourageDivider}>
-      <span className={styles.dividerText}>
-        <span className={styles.dividerMain}>SECONDARY SPONSORS</span>
-      </span>
-    </div>
+    <div className={styles.sectionLabel}>SECONDARY SPONSORS</div>
 
     <div className={styles.threeCol}>
       <div>
-        <div className={styles.role}>CANDLE</div>
+        <div className={styles.roleSub}>CANDLE</div>
         <div>Kaizz Silvestre</div>
         <div>Koleen Robinos</div>
       </div>
-
       <div>
-        <div className={styles.role}>VEIL</div>
+        <div className={styles.roleSub}>VEIL</div>
         <div>Renz Silvestre</div>
         <div>Jheraldine Perez</div>
       </div>
-
       <div>
-        <div className={styles.role}>CORD</div>
+        <div className={styles.roleSub}>CORD</div>
         <div>Noah Loyola</div>
         <div>Jhayle Loyola</div>
       </div>
     </div>
 
- <div className={styles.entourageSpacer} />
-
-
+    {/* Bridesmaids / Groomsmen */}
     <div className={styles.twoCol}>
+      <div>
+        <div className={styles.role}>BRIDESMAIDS</div>
+        <div>Krizia Porte</div>
+        <div>Joselle Porte</div>
+        <div>Francheska Zulueta</div>
+      </div>
       <div>
         <div className={styles.role}>GROOMSMEN</div>
         <div>Awie Maningat</div>
         <div>Daniel Osila</div>
         <div>Ronald Bartolome</div>
       </div>
-
-      <div>
-        <div className={styles.role}>BRIDESMAIDS</div>
-        <div>Camille Krizia Porte</div>
-        <div>Joselle Ann Porte</div>
-        <div>Francheska Zulueta</div>
-      </div>
     </div>
 
-    {/* Bearers */}
-    <div className={styles.entourageDivider}>
-      <span className={styles.dividerText}>
-        <span className={styles.dividerMain}>
-          TO CARRY OUR SYMBOL OF LOVE, FAITH, &amp; TREASURES
-        </span>
-      </span>
-    </div>
+    {/* Symbol Bearers */}
+    <div className={styles.sectionLabel}>SYMBOL BEARERS</div>
 
     <div className={styles.threeCol}>
       <div>
-        <div className={styles.role}>RING</div>
+        <div className={styles.roleSub}>RING</div>
         <div>Camille Maximo</div>
       </div>
       <div>
-        <div className={styles.role}>COIN</div>
+        <div className={styles.roleSub}>COIN</div>
         <div>Janica Santos</div>
       </div>
       <div>
-        <div className={styles.role}>BIBLE</div>
+        <div className={styles.roleSub}>BIBLE</div>
         <div>Emerald Sumalde</div>
       </div>
-
-      <div className={styles.officiant}>
-        <div className={styles.role}>OFFICIANT</div>
-        <div>Fr. Keith Buenaventura</div>
-      </div>
     </div>
+
   </div>
 </section>
+
 
 
       {/* ================= PRENUP GALLERY ================= */}

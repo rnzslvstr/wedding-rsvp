@@ -50,7 +50,7 @@ export default function Navbar() {
   const navShadow = scrolled ? '0 10px 30px rgba(0,0,0,0.12)' : 'none';
 
   // ✅ added: Entourage + Prenup
-  const items = ['Home', 'Our Story', 'Venue', 'Entourage', 'Prenup', 'FAQ'];
+  const items = ['Home', 'Our Story', 'Venue', 'Entourage', 'Gallery', 'FAQ'];
 
   // Home uses "#", other pages use "/#"
   const hrefFor = (item: string) => {
@@ -59,7 +59,7 @@ export default function Navbar() {
       'Our Story': 'our-story',
       Venue: 'venue',
       Entourage: 'entourage',
-      Prenup: 'prenup-gallery',
+      Gallery: 'prenup-gallery',
       FAQ: 'faq',
     };
 
