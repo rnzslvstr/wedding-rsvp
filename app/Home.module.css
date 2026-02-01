@@ -1226,6 +1226,8 @@
   overflow: hidden;
 }
 
+/* ===== DESKTOP (default) ===== */
+
 /* LEFT vine */
 .entourageVines::before {
   content: "";
@@ -1236,7 +1238,7 @@
   width: clamp(120px, 18vw, 240px);
   height: 100%;
 
-  background-image: url("/vines/entourage-left.png");
+  background-image: url("/vines/vineleftdesktop.png");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: contain;
@@ -1244,8 +1246,8 @@
   opacity: 1;
   pointer-events: none;
   z-index: 0;
-    transform: translateX(-10%);
 
+  transform: translateX(-10%);
 }
 
 /* RIGHT vine */
@@ -1258,7 +1260,7 @@
   width: clamp(120px, 18vw, 240px);
   height: 100%;
 
-  background-image: url("/vines/entourage-right.png");
+  background-image: url("/vines/vinerightdesktop.png");
   background-repeat: no-repeat;
   background-position: right top;
   background-size: contain;
@@ -1266,8 +1268,8 @@
   opacity: 1;
   pointer-events: none;
   z-index: 0;
-    transform: translateX(10%);
 
+  transform: translateX(10%);
 }
 
 /* keep content above vines */
@@ -1276,20 +1278,32 @@
   z-index: 1;
 }
 
-/* Tablet */
+/* ===== TABLET ===== */
 @media (max-width: 1024px) {
-  .entourageVines::before,
-  .entourageVines::after {
+  .entourageVines::before {
+    background-image: url("/vines/vinelefttablet.png");
     width: clamp(110px, 20vw, 200px);
-    opacity: 1;
+    transform: translateX(-10%);
+  }
+
+  .entourageVines::after {
+    background-image: url("/vines/vinerighttablet.png");
+    width: clamp(110px, 20vw, 200px);
+    transform: translateX(10%);
   }
 }
 
-/* Mobile */
+/* ===== MOBILE ===== */
 @media (max-width: 640px) {
-  .entourageVines::before,
-  .entourageVines::after {
+  .entourageVines::before {
+    background-image: url("/vines/vineleftmobile.png");
     width: 140px;
-    opacity: 1;
+    transform: translateX(-10%);
+  }
+
+  .entourageVines::after {
+    background-image: url("/vines/vinerightmobile.png");
+    width: 140px;
+    transform: translateX(10%);
   }
 }
