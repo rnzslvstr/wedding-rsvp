@@ -1283,13 +1283,13 @@
   .entourageVines::before {
     background-image: url("/vines/vinelefttablet.png");
     width: clamp(110px, 20vw, 200px);
-    transform: translateX(-10%);
+    transform: translateX(0%);
   }
 
   .entourageVines::after {
     background-image: url("/vines/vinerighttablet.png");
     width: clamp(110px, 20vw, 200px);
-    transform: translateX(10%);
+    transform: translateX(0%);
   }
 }
 
