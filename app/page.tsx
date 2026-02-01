@@ -177,7 +177,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
           <>
             The ceremony will be held at the{' '}
             <strong>Parish of the Immaculate Heart of Mary, Antipolo City</strong>. It starts at{' '}
-            <strong>4:00 PM</strong>. Please arrive at least <strong>45 minutes early</strong>, as the entourage will be marching in beforehand and to allow time for everyone to get settled.
+            <strong>4:00 PM</strong>. Please arrive at least <strong>40 minutes early</strong>, as the entourage will be marching in beforehand and to allow time for everyone to get settled.
           </>
         ),
         extra: (
@@ -278,9 +278,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
         q: 'Is it required to RSVP on the website?',
         a: (
           <>
-            Yes! Kindly RSVP through the website by the end of February, so we can carefully finalize our
-            preparations. As we’re keeping our celebration intimate, we’re only able to welcome confirmed
-            guests.
+            Yes! Please RSVP through the website the soonest, so we can finalize our preparations. As we’re keeping our celebration intimate, we’re only able to welcome confirmed guests.
           </>
         ),
       },
@@ -495,7 +493,8 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
 
    {/* ================= ENTOURAGE ================= */}
 <section id="entourage" className={styles.section}>
-  <div className={styles.entourageBoard}>
+  <div className={`${styles.entourageBoard} ${styles.entourageVines}`}>
+
 
     <h2 className={styles.entourageTitle}>ENTOURAGE</h2>
     <p className={styles.entourageSubtitle}>Joined by those closest to our hearts</p>
@@ -568,7 +567,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
       <div>
         <div className={styles.roleSub}>CORD</div>
         <div>Noah Loyola</div>
-        <div>Jhayle Loyola</div>
+        <div>Jhayle Meer</div>
       </div>
     </div>
 
