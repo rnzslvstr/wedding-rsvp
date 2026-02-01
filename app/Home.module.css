@@ -1219,56 +1219,55 @@
 }
 
 
-/* ================= ENTOURAGE VINES (INSIDE + FULL OPACITY) ================= */
+/* ================= ENTOURAGE VINES ================= */
 
 .entourageVines {
   position: relative;
   overflow: hidden;
-
-  /* tighter padding so vines sit closer to content */
-  padding-left: calc(20px + clamp(24px, 5vw, 80px));
-  padding-right: calc(20px + clamp(24px, 5vw, 80px));
 }
 
 /* LEFT vine */
 .entourageVines::before {
   content: "";
   position: absolute;
-  top: 16px;
+  top: 0;
   left: 0;
-  height: calc(100% - 32px);
 
-  width: clamp(110px, 14vw, 180px);
+  width: clamp(120px, 18vw, 240px);
+  height: 100%;
 
-  background: url("/vines/entourage-left.png") no-repeat left top;
+  background-image: url("/vines/entourage-left.png");
+  background-repeat: no-repeat;
+  background-position: left top;
   background-size: contain;
 
-  opacity: 1;                /* FULL opacity */
+  opacity: 1;
   pointer-events: none;
   z-index: 0;
+    transform: translateX(-10%);
 
-  /* bring it inside */
-  transform: translateX(-10%);
 }
 
 /* RIGHT vine */
 .entourageVines::after {
   content: "";
   position: absolute;
-  top: 16px;
+  top: 0;
   right: 0;
-  height: calc(100% - 32px);
 
-  width: clamp(110px, 14vw, 180px);
+  width: clamp(120px, 18vw, 240px);
+  height: 100%;
 
-  background: url("/vines/entourage-right.png") no-repeat right top;
+  background-image: url("/vines/entourage-right.png");
+  background-repeat: no-repeat;
+  background-position: right top;
   background-size: contain;
 
-  opacity: 1;                /* FULL opacity */
+  opacity: 1;
   pointer-events: none;
   z-index: 0;
+    transform: translateX(10%);
 
-  transform: translateX(10%);
 }
 
 /* keep content above vines */
@@ -1279,27 +1278,18 @@
 
 /* Tablet */
 @media (max-width: 1024px) {
-  .entourageVines {
-    padding-left: calc(20px + clamp(20px, 6vw, 60px));
-    padding-right: calc(20px + clamp(20px, 6vw, 60px));
-  }
-
   .entourageVines::before,
   .entourageVines::after {
-    width: clamp(100px, 18vw, 150px);
+    width: clamp(110px, 20vw, 200px);
+    opacity: 1;
   }
 }
 
 /* Mobile */
 @media (max-width: 640px) {
-  .entourageVines {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
   .entourageVines::before,
   .entourageVines::after {
-    width: 120px;
-    transform: translateX(0); /* fully inside on mobile */
+    width: 140px;
+    opacity: 1;
   }
 }
