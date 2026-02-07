@@ -533,13 +533,13 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
     <div className={styles.twoCol}>
       <div>
         <div>Cristina Meer</div>
-        <div>Rosalina Licas</div>
-        <div>Malou Arceo</div>
+        <div>Rosalina Porte</div>
+        <div>Malou Lim</div>
         <div>Joshene Bersales</div>
       </div>
       <div>
         <div>Jeffrey Meer</div>
-        <div>Eddie Licas</div>
+        <div>Jimmy Porte</div>
         <div>Joma Robles</div>
         <div>Jordan Santos</div>
       </div>
@@ -562,7 +562,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
       <div>
         <div className={styles.roleSub}>VEIL</div>
         <div>Renz Silvestre</div>
-        <div>Jheraldine Perez</div>
+        <div>Jheraldine Meer-Perez</div>
       </div>
       <div>
         <div className={styles.roleSub}>CORD</div>
