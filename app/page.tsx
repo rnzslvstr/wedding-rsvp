@@ -246,7 +246,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
         q: 'What should we wear?',
         a: (
           <>
-            Gentlemen: <strong>Black suit and tie</strong>
+            Gentlemen: <strong>Long-sleeved polos in muted tones, paired with black trousers</strong>
             <br />
             Ladies: <strong>Long dresses in soft, muted tones</strong>
           </>
