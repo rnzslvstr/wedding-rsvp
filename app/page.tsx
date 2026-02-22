@@ -523,7 +523,7 @@ Now, they are ready to spend a lifetime of adventures—exploring new places and
       </div>
       <div>
         <div className={styles.role}>BEST MAN</div>
-        <div>Aaron Javal</div>
+        <div>John Joseph Morfe</div>
       </div>
     </div>
 
